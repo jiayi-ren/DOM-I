@@ -39,4 +39,89 @@ const siteContent = {
 
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+logo.setAttribute('src', siteContent["nav"]["img-src"]);
+
+// nav links
+let navLinks = document.querySelectorAll('nav a');
+const links = Object.values(siteContent["nav"]);
+for(let i = 0; i < navLinks.length ; i++){
+  navLinks[i].textContent = links[i];
+  navLinks[i].style.color = "green";
+}
+// add two new links using APPENDCHILD , PREPEND
+let newLink1 = document.createElement("a");
+newLink1.setAttribute("href", "#");
+newLink1.textContent = "Append";
+
+let newLink2 = document.createElement("a");
+newLink2.setAttribute("href", "#");
+newLink2.textContent = "Prepend";
+
+document.querySelector("nav").appendChild(newLink1);
+document.querySelector("nav").prepend(newLink2);
+
+// cta
+let cta = document.querySelector("section.cta");
+cta.querySelector("h1").textContent = siteContent["cta"]["h1"];
+cta.querySelector("button").textContent = siteContent["cta"]["button"];
+
+cta.querySelector("h1").style.letterSpacing = "15px";
+
+// cta img
+let ctaImg = document.getElementById("cta-img");
+ctaImg.setAttribute('src', siteContent["cta"]["img-src"]);
+
+// main content
+let topContent = document.querySelectorAll("section.main-content .top-content .text-content");
+topContent[0].querySelector("h4").textContent = siteContent["main-content"]["features-h4"];
+topContent[0].querySelector("p").textContent = siteContent["main-content"]["features-content"];
+topContent[1].querySelector("h4").textContent = siteContent["main-content"]["about-h4"];
+topContent[1].querySelector("p").textContent = siteContent["main-content"]["about-content"];
+
+let bottomContent = document.querySelectorAll("section.main-content .bottom-content .text-content");
+bottomContent[0].querySelector("h4").textContent = siteContent["main-content"]["services-h4"];
+bottomContent[0].querySelector("p").textContent = siteContent["main-content"]["services-content"];
+bottomContent[1].querySelector("h4").textContent = siteContent["main-content"]["product-h4"];
+bottomContent[1].querySelector("p").textContent = siteContent["main-content"]["product-content"];
+bottomContent[2].querySelector("h4").textContent = siteContent["main-content"]["vision-h4"];
+bottomContent[2].querySelector("p").textContent = siteContent["main-content"]["vision-content"];
+
+let middleImg = document.getElementById("middle-img");
+middleImg.setAttribute("src", siteContent["main-content"]["middle-img-src"]);
+
+// contact
+let contact = document.querySelector("section.contact");
+contact.querySelector("h4").textContent = siteContent["contact"]["contact-h4"];
+contact.querySelectorAll("p")[0].textContent = siteContent["contact"]["address"];
+contact.querySelectorAll("p")[1].textContent = siteContent["contact"]["phone"];
+contact.querySelectorAll("p")[2].textContent = siteContent["contact"]["email"];
+
+////////////// STRETCH ////////////////
+////////////// Update Button /////////////////
+let button = document.createElement("button");
+button.textContent = "Update";
+contact.append(button);
+button.addEventListener('click', (event) => {
+
+  // button text, background color toggle
+  if (event.target.innerHTML === "Update") {
+    event.target.textContent = "Revert";
+    event.target.style.backgroundColor = "Yellow";
+  } else {
+    event.target.textContent = "Update";
+    event.target.style.backgroundColor = "transparent";
+  }
+  
+  // change h1 text
+  cta.querySelector("h1").textContent = "DOM IS NOT AWESOME";
+  
+  // hide p elements
+  let pContent = document.getElementsByTagName("p");
+  for (let i = 0; i < pContent.length; i++){
+    pContent[i].toggleAttribute('hidden');
+  }
+})
+
+// footer
+let footer = document.querySelector("footer");
+footer.querySelector("p").textContent = siteContent["footer"]["copyright"];
